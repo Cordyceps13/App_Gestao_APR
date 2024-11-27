@@ -80,6 +80,20 @@ def main(page: ft.Page):
         alignment=ft.MainAxisAlignment.CENTER,
     )
     
+    for dia in dia_semana:
+        _row_dia_semana.controls.append(
+            ft.Container(
+                width=25,
+                height=25,
+                border_radius=5,
+                alignment=ft.alignment.center,
+                content=ft.Text(
+                    dia,
+                    size=9,
+                    color='white',
+                )
+            )
+        )
 
     # Adicionar o conteúdo à página
     page.add(
