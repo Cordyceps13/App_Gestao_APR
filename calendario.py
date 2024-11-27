@@ -1,6 +1,9 @@
 import flet as ft
 import main as m
 import datetime as dt
+import calendar
+
+obj = calendar.Calendar()
 
 
 def main(page: ft.Page):
@@ -9,7 +12,14 @@ def main(page: ft.Page):
     page.window.height = m.WINDOW_HEIGHT
     page.window.resizable = False
     page.update()
-
+    
+    dicionario = {}
+    
+    ano_atual = int(dt.date.today().strftime('%Y'))
+    mes_atual = dt.date.today().strftime('%m')
+    dia_atual = int(dt.date.today().strftime('%d'))
+    
+    
     def voltar(e):
         page.clean()
         m.main(page)
@@ -95,6 +105,63 @@ def main(page: ft.Page):
             )
         )
 
+    # loop para criar o intervalo de anos
+    for ano in range(ano_atual - 1, ano_atual + 1):
+        dicionario[ano] = {}
+        for mes in range(1 , 12):
+            coluna_mes = ft.Column(
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                alignment=ft.MainAxisAlignment.CENTER,
+            )
+            interior = ft.Container(
+                visible=True,
+                content=coluna_mes,
+                
+            )
+            
+            _main_column_.controls.append(
+                interior
+            )
+
+            _row_ano = ft.Row(
+                spacing=2,
+                alignment=ft.MainAxisAlignment.CENTER,
+                controls=[
+                    ft.Text(
+                        f'{meses[mes - 1]} {ano}',
+                        size=12,
+                        # text_align=ft.TextAlign.CENTER,
+                    )
+                ]
+            )
+            
+            coluna_mes.controls.append(
+                _row_ano
+            )
+            coluna_mes.controls.append(
+                _row_dia_semana
+            )
+            
+            # # loop para criar o intervalo de dias
+            # for chave in dicionario:
+            #     dicionario[chave][mes] = {}
+            #     for dia in range(1 - 31):
+            #         dicionario[chave][mes][dia] = ft.Container(
+            #             width=25,
+            #             height=25,
+            #             border_radius=5,
+            #             alignment=ft.alignment.center,
+            #             content=ft.Text(
+            #                 dia,
+            #                 size=9,
+            #                 color='white',
+            #             )
+            #         )
+
+            #         coluna_mes.controls.append(
+            #             dicionario[chave][mes][dia]
+            #         )
+    
     # Adicionar o conteúdo à página
     page.add(
         ft.Container(
