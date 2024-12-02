@@ -4,6 +4,7 @@ import login as lg
 import signup as su
 import database as db
 import calculator as cal
+import calendario as ca
 import time
 import sys
 
@@ -45,6 +46,10 @@ def main(page: ft.Page):
     def abrir_calculadora(e):
         page.clean()
         cal.abrir_calculadora(page)
+    
+    def abrir_calendario(e):
+        page.clean()
+        ca.abrir_calendario(page)
 
     # Função para fechar o alertDialog
     def fechar_alert(page):
@@ -131,6 +136,16 @@ def main(page: ft.Page):
                 bgcolor=BTN_COLOR,
             ),
         )
+        
+        calendario_btn = ft.TextButton(
+            text="Calendário",
+            on_click=abrir_calendario,
+            style=ft.ButtonStyle(
+                color='white',
+                shape=ft.RoundedRectangleBorder(radius=6),
+                bgcolor=BTN_COLOR,
+            ),
+        )
 
         logout_btn = ft.IconButton(
             icon=ft.icons.LOGOUT,
@@ -144,20 +159,22 @@ def main(page: ft.Page):
         )
 
         botoes.extend([
-
             ft.Container(
                 content=logout_btn,
                 alignment=ft.alignment.top_right,
                 margin=ft.margin.only(bottom=200),
             ),
-            
             ft.Container(
                 content=to_do_button,
                 alignment=ft.alignment.center,
             ),
-
             ft.Container(
                 content=calculator_btn,
+                alignment=ft.alignment.center,
+                # margin=ft.margin.only(bottom=300),
+            ),
+            ft.Container(
+                content=calendario_btn,
                 alignment=ft.alignment.center,
                 margin=ft.margin.only(bottom=300),
             )
