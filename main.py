@@ -21,6 +21,7 @@ def main(page: ft.Page):
     page.window.width = WINDOW_WIDTH
     page.window.height = WINDOW_HEIGHT
     page.window.resizable = False
+    # page.theme_mode = ft.ThemeMode.LIGHT
     page.update()
 
     # Função para fechar a aplicação
@@ -115,7 +116,15 @@ def main(page: ft.Page):
     botoes = []  # Controls para adicionar os botões à pagina principal
 
     # Adicionar botões à pagina principal consoante existência de sessão iniciada ou não
+    imagem_fundo = ft.Image(
+        src= 'assets/mushroom.png',
+        fit=ft.ImageFit.FILL,
+        width=WINDOW_WIDTH,
+        height=WINDOW_HEIGHT,
+    )
     if db.verificar_sessao():
+        
+        
         # Botão para abrir a aplicação to_do.py
         to_do_button = ft.TextButton(
             text="Lista de Tarefas",
@@ -246,7 +255,6 @@ def main(page: ft.Page):
             alignment=ft.alignment.center,
             content=ft.Stack(
                 controls=[
-                    # img,
                     ft.Row(
                         alignment=ft.MainAxisAlignment.CENTER,
                         vertical_alignment=ft.MainAxisAlignment.CENTER,
@@ -258,12 +266,25 @@ def main(page: ft.Page):
                                 border=ft.border.all(0.5, 'white'),
                                 border_radius=30,
                                 padding=ft.padding.only(
-                                    top=20, left=25, right=25, bottom=20),
+                                    top=20, 
+                                    left=25, 
+                                    right=25, 
+                                    bottom=20
+                                ),
                                 clip_behavior=ft.ClipBehavior.HARD_EDGE,
-                                content=ft.Column(
-                                    alignment=ft.MainAxisAlignment.CENTER,
-                                    expand=True,
-                                    controls=botoes,
+                                content=ft.Stack(
+                                    expand = True,
+                                    controls=[
+                                        # imagem_fundo,
+                                        *(
+                                            [imagem_fundo] if db.verificar_sessao() else []
+                                        ),
+                                        ft.Column(
+                                            alignment=ft.MainAxisAlignment.CENTER,
+                                            expand=True,
+                                            controls=botoes,
+                                        ),
+                                    ],
                                 )
                             )
                         ],
