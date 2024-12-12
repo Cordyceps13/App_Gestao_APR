@@ -123,8 +123,6 @@ def main(page: ft.Page):
         height=WINDOW_HEIGHT,
     )
     if db.verificar_sessao():
-        
-        
         # Botão para abrir a aplicação to_do.py
         to_do_button = ft.TextButton(
             text="Lista de Tarefas",

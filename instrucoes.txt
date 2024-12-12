@@ -1,0 +1,11 @@
+#CRIAR AMBIENTE VIRTUAL:
+ -> python -m venv venv
+
+#ATIVAR AMBIENTE VIRTUAL:
+ -> .\venv\Scripts\activate
+
+#INSTALAR DEPENDENCIAS:
+ -> pip install -r requirements.txt
+
+#EXECUTAR PROJETO:
+ -> python main.py
